@@ -5,7 +5,7 @@ This repository contains a simple terminal Snake Game which leverages ncurses li
 Steps to build the sources:
 
 ```
-$ git clone <url>
+$ git clone https://github.com/marcinsztajn/snake.git
 $ cd snake
 $ mkdir build && cd build 
 $ cmake .. 
