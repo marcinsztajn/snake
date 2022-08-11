@@ -26,8 +26,10 @@ int main (int argc, char ** argv){
         throw std::runtime_error("Please increase your console window size to at least " + std::to_string(BOARD_SIZE) + " in both dimensions");
     }
 
-    Board board(BOARD_HEIGHT, BOARD_WIDTH);
-
+    Board* board = new Board(BOARD_HEIGHT, BOARD_WIDTH);
+    board->init();
+    board->addPoint(5, 5, '#');
+    board->refresh();
 
     getch();
     endwin();
@@ -38,9 +40,7 @@ int main (int argc, char ** argv){
 cbreak() - when prsssing CTRL + C program is closing
 raw() - allows to print 
 noecho() - when user puts something in the screen program do not prints it out
-move()
-addch()
-refresh(
+mvwaddch() - put the character into the given window at its current window position, which is then advanced
     
 )
 */
