@@ -8,7 +8,8 @@ Steps to build the sources:
 $ git clone <url>
 $ cd snake
 $ mkdir build && cd build 
-$ cmake ..
+$ cmake .. 
+$ make 
 ```
 
 Run the game with the following command:
