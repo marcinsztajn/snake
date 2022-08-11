@@ -3,49 +3,91 @@
 #include <iostream>
 #include <ncurses.h>
 
+
+/* TODO:
+ - underscore private class members
+*/
+
 class Board
 {
 public:
+    /* Default constructor*/
+    Board(){
+        Board(0,0);        
+    }
+
     Board(int height, int width){
         getmaxyx(stdscr, this->max_y,this->max_x);
         center_y = max_y/2;
         center_x = max_x/2;
         this->height = height;
         this->width = width;
-        board = newwin(height,width,center_y - height/2, center_x - width/2);
+        _board = newwin(height,width,center_y - height/2, center_x - width/2);
         // this->addBorder();
         // this->refresh();
     }
     
-    /* Method draws the border around the board*/
+    /* Method draws the border around the _board*/
     void addBorder(){
-        box(board,0,0);
+        box(_board,0,0);
     }
-    /* Method clears the board and redraws the boarder*/
+    /* Method clears the _board and redraws the _boarder*/
     void clear(){
-       wclear(board); 
+       wclear(_board); 
        this->addBorder();
     }
     /* Method refreshes the border*/
     void refresh(){
-        wrefresh(board);
+        wrefresh(_board);
     }
     /* Method to init*/
     void init(){
         this->clear();
         this->refresh();
     }
-    /* Add the char at given point on the board*/
+    /* Add the char at given point on the _board*/
     void addPoint(int y, int x, chtype ch){
-        mvwaddch(board, y, x, ch);
+        mvwaddch(_board, y, x, ch);
     }
 
     /* Get input from the user*/
     chtype getInput(){
-        return wgetch(board);
+        return wgetch(_board);
     }
 
 private:
-    WINDOW *board;
+    WINDOW *_board;
     int max_y, max_x, center_y, center_x, height, width;
+};
+
+/* Main controller class */
+class SnakeGame{
+public:
+    SnakeGame(int height, int width){
+        _board = Board(height, width);
+        _board.init();
+        _game_over = false;
+    }
+    /* Get the input from the board*/
+    void processInput()
+    {
+        chtype inout = _board.getInput();
+        // process the input
+    }
+    /* Update the state of the game */
+    void updateState()
+    {
+        // update state
+    }
+    void redraw()
+    {
+        _board.refresh();
+    }
+    bool isOver()
+    {
+        return _game_over;
+    }
+private:
+    Board _board;
+    bool _game_over;
 };

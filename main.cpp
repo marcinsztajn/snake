@@ -26,10 +26,29 @@ int main (int argc, char ** argv){
         throw std::runtime_error("Please increase your console window size to at least " + std::to_string(BOARD_SIZE) + " in both dimensions");
     }
 
-    Board* board = new Board(BOARD_HEIGHT, BOARD_WIDTH);
-    board->init();
-    board->addPoint(5, 5, '#');
-    board->refresh();
+    SnakeGame *game = new SnakeGame(BOARD_HEIGHT, BOARD_WIDTH);
+    
+    while(!game->isOver()){
+        game->processInput();
+
+        game->updateState();
+
+        game->redraw();
+    }
+
+    // Board* board = new Board(BOARD_HEIGHT, BOARD_WIDTH);
+    // board->init();
+    // board->addPoint(5, 5, '#');
+    // board->refresh();
+
+    // 1: get input from the user
+
+    // 2: update game state
+
+    // 3: redraw display
+
+    // 4: go ro 1, unless game over
+
 
     getch();
     endwin();
