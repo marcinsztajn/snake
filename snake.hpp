@@ -8,6 +8,33 @@
  - underscore private class members
 */
 
+class Drawable{
+public:
+    Drawable(){
+        y = x = 0;
+        icon = ' ';
+    }
+    Drawable(int y, int x, chtype ch){
+        this->y = y;
+        this->x = x;
+        this->icon = ch;
+    }
+    /* Getters and setters*/
+    int getX(){
+        return this->x;
+    }
+    int getY(){
+        return this->y;
+    }
+    chtype getIcon(){
+        return this->icon;
+    }
+
+private:
+    int y, x;
+    chtype icon;
+};
+
 class Board
 {
 public:
@@ -55,6 +82,11 @@ public:
         return wgetch(_board);
     }
 
+    /* Allows to pass a Snake or Apple and draw at*/
+    void add(Drawable drawable){
+        this->addPoint(drawable.getY(), drawable.getX(), drawable.getIcon());
+    }
+
 private:
     WINDOW *_board;
     int max_y, max_x, center_y, center_x, height, width;
@@ -77,7 +109,7 @@ public:
     /* Update the state of the game */
     void updateState()
     {
-        // update state
+        _board.add(Drawable(3, 3, '#'));
     }
     void redraw()
     {
