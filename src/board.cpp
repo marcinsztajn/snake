@@ -43,7 +43,7 @@ void Board::addPoint(int y, int x, chtype ch){
     mvwaddch(this->_board, y, x, ch);
 }
 
-/* Get input from the user*/
+/* Get input character from the curses terminal keyboard*/
 chtype Board::getInput(){
     return wgetch(this->_board);
 }
@@ -56,6 +56,14 @@ void Board::add(Drawable drawable){
 /* Get empty coordinates where to place the Apple*/
 void Board::getEmptyCoordinates(int &y, int &x){
     /* One-liner which runs until it finds the empty spot on the board */
-    while(mvwinch(this->_board, y = rand() % this->_height, x = rand() % this->_width) == ' ');
+    while(mvwinch(this->_board, y = (rand() % this->_height), x = (rand() % this->_width)) != ' ');
+    // std::string text = "Y: " + std::to_string(y) + "  X: " + std::to_string(x); 
+    // mvwaddstr(stdscr,this->_center_y + this->_height/2, this->_center_x - this->_width/2, text.c_str());
+    // std::string str = "height: " + std::to_string(this->_height) + "  Width:" + std::to_string(this->_width);
+    // mvwaddstr(stdscr,this->_center_y + this->_height/2 + 1, this->_center_x - this->_width/2,str.c_str());
+    // mvwaddch(stdscr,y,x,'#');
+    // wrefresh(this->_board);
+    // wrefresh(stdscr);
+    // mvwaddch(stdscr, this->_center_y + this->_height/2 + 1, this->_center_x - this->_width/2, (chtype)std::stoi(test));
     // mvwinch() - returns the character at given position in given window 
 }

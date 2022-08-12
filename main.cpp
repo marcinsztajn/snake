@@ -25,6 +25,9 @@ int main (int argc, char ** argv){
     if (max_y < BOARD_HEIGHT || max_x < BOARD_SIZE) {
         throw std::runtime_error("Please increase your console window size to at least " + std::to_string(BOARD_SIZE) + " in both dimensions");
     }
+    // char msg[]= "Marcin Rocks!";
+    // mvwprintw(stdscr,0,0, msg);
+    // refresh();
 
     SnakeGame *game = new SnakeGame(BOARD_HEIGHT, BOARD_WIDTH);
     
