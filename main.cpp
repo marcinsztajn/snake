@@ -2,7 +2,7 @@
 #include <string>
 #include <ncurses.h>
 #include <stdexcept>
-#include "snake.hpp"
+#include "src/include/snake_game.h"
 
 #define BOARD_SIZE 20
 #define BOARD_WIDTH (BOARD_SIZE * 2.5)
