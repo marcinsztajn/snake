@@ -15,6 +15,8 @@ public:
     chtype getInput();
     void add(Drawable drawable);
     void getEmptyCoordinates(int &y, int &x);
+    void setTimeout(int timeout);
+    void setScore(int score);
 
 private:
     WINDOW *_board;

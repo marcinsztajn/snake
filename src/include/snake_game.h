@@ -15,8 +15,10 @@ public:
     void redraw();
     bool isOver();
 private:
+    void initSnake(int y, int x);
     Board _board;
     bool _game_over;
     Apple *_apple;
     Snake snake;
+    int score = 0;
 };

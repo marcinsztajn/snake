@@ -5,15 +5,98 @@
 SnakeGame::SnakeGame(int height, int width){
     this->_board = Board(height, width);
     this->_board.init();
+    this->_board.setScore(score);
     this->_game_over = false;
     this->_apple = NULL;
     srand(time(NULL)); // seeds random number generator
+    this->initSnake(5,5);
+
+}
+
+/* Class destructor */
+SnakeGame::~SnakeGame(){
+    if (this->_apple != NULL){
+        delete this->_apple;
+    }
+}
+
+/* Get the input from the board */
+void SnakeGame::processInput(){
+    chtype input = this->_board.getInput();
+    switch(input){
+        case KEY_UP:
+            this->snake.setDirection(Direction::up);
+        break;
+        case KEY_DOWN:
+            this->snake.setDirection(Direction::down);
+        break;
+        case KEY_LEFT:
+            this->snake.setDirection(Direction::left);
+        break;
+        case KEY_RIGHT:
+            this->snake.setDirection(Direction::right);
+        break;
+        case 'p':
+            this->_board.setTimeout(-1); // wait forever until the user press the 'p' key
+            while(this->_board.getInput() != 'p'); 
+            this->_board.setTimeout(100); // come back to the old timeout settings
+        break ;
+    }
+}
+
+/* Update the state of the game */
+void SnakeGame::updateState()
+{
+    if (this->_apple == NULL){
+        int y, x;
+        this->_board.getEmptyCoordinates(y, x);
+        _apple = new Apple(y, x, 'A');
+        this->_board.add(*_apple);
+    }
+    SnakePiece next = snake.nextHead();
+    
+    
+    
+    
+    if((next.getX() != _apple->getX()) || (next.getY() != _apple->getY())){ /* if its blank spot*/
+        int emptyRow = snake.tail().getY();
+        int emptyCol = snake.tail().getX();
+        // put the empty spot where the tail was
+        this->_board.add(Empty(emptyRow, emptyCol));
+        snake.removePiece(); // drop the tail of the snake
+    }
+    else {
+        /* Delete an apple */    
+        delete this->_apple;
+        this->_apple = NULL;    
+        // Add score
+        score++;
+        _board.setScore(score);
+    }
+    this->_board.add(next);
+    snake.addPiece(next);
+}
+
+/* Redraw the board surface/canvas*/
+void SnakeGame::redraw()
+{
+    this->_board.refresh();
+}
+
+/* Chech if the game is over */
+bool SnakeGame::isOver()
+{
+    return this->_game_over;
+}
+
+/* Initialize snake object */
+void SnakeGame::initSnake(int y, int x){
     // initaialize snake
     snake.setDirection(Direction::down);
     std::string text;  
     
     /* Create the first piece */
-    SnakePiece next = SnakePiece(3,1);  // starting point
+    SnakePiece next = SnakePiece(y,x);  // starting point
     // text = "First piece: Y: " + std::to_string(next.getY()) + "  X: " + std::to_string(next.getX());
     // mvwaddstr(stdscr,0, 0, text.c_str());
     // wrefresh(stdscr);
@@ -48,51 +131,4 @@ SnakeGame::SnakeGame(int height, int width){
     snake.addPiece(next);
     this->_board.refresh();
 
-}
-
-/* Class destructor */
-SnakeGame::~SnakeGame(){
-    if (this->_apple != NULL){
-        delete this->_apple;
-    }
-}
-
-/* Get the input from the board */
-void SnakeGame::processInput(){
-    chtype inout = this->_board.getInput();
-    // process the input
-}
-
-/* Update the state of the game */
-void SnakeGame::updateState()
-{
-    if (this->_apple == NULL){
-        int y, x;
-        this->_board.getEmptyCoordinates(y, x);
-        _apple = new Apple(y, x, 'A');
-        this->_board.add(*_apple);
-    }
-    SnakePiece next = snake.nextHead();
-    
-    if(next.getX() != _apple->getX() && next.getY() != _apple->getY()){ /* if its blank spot*/
-        int emptyRow = snake.tail().getY();
-        int emptyCol = snake.tail().getX();
-        // put the empty spot where the tail was
-        this->_board.add(Empty(emptyRow, emptyCol));
-        snake.removePiece();
-    }
-    this->_board.add(next);
-    snake.addPiece(next);
-}
-
-/* Redraw the board surface/canvas*/
-void SnakeGame::redraw()
-{
-    this->_board.refresh();
-}
-
-/* Chech if the game is over */
-bool SnakeGame::isOver()
-{
-    return this->_game_over;
 }

@@ -13,7 +13,7 @@ SnakePiece::SnakePiece(int y, int x){
     this->_icon = '#';
 }
 
-/* Snake piecie constructor */
+/* Snake piece constructor */
 SnakePiece::SnakePiece(int y, int x, chtype ch){
     this->_y = y;
     this->_x = x;
@@ -52,7 +52,10 @@ Direction Snake::getDirection() const{
 
 /* Set snake's direction */
 void Snake::setDirection(Direction direction){
-    this->_snake_direction = direction;
+    /* Check current direction and avoid going backwards */
+    if (direction + this->_snake_direction != 0){ 
+        this->_snake_direction = direction;
+    }
 }
 
 /* Returns the next position of the Snake's head */

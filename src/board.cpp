@@ -14,7 +14,10 @@ Board::Board(int height, int width){
     this->_height = height;
     this->_width = width;
     _board = newwin(height,width,this->_center_y - this->_height/2, this->_center_x - this->_width/2);
-    wtimeout(this->_board, 100);   //refreshing the screen
+    wtimeout(this->_board, 500);   //refreshing the screen
+    /* Enable the keypad of the user's terminal*/
+    keypad(this->_board, true);
+
 }
 
 /* Method draws the border around the _board*/
@@ -68,4 +71,15 @@ void Board::getEmptyCoordinates(int &y, int &x){
     // wrefresh(stdscr);
     // mvwaddch(stdscr, this->_center_y + this->_height/2 + 1, this->_center_x - this->_width/2, (chtype)std::stoi(test));
     // mvwinch() - returns the character at given position in given window 
+}
+
+/* Set the input timeout */
+void Board::setTimeout(int timeout){
+    wtimeout(this->_board, timeout);
+}
+
+void Board::setScore(int score){
+    std::string txt = "Score: " + std::to_string(score);
+    mvwaddstr(stdscr, _center_y + _height/2, _center_x - _width/2, txt.c_str());
+    wrefresh(stdscr);
 }

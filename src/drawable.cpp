@@ -24,5 +24,5 @@ chtype Drawable::getIcon() const{
 /* Set coordinates for the drawable object */
 void Drawable::setPosition(int y, int x){
     this->_y = y;
-    this->_y = x; 
+    this->_x = x; 
 }
