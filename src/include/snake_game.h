@@ -1,6 +1,9 @@
 #pragma once
 #include "board.h"
 #include "apple.h"
+#include "snake.h"
+#include "empty.h"
+#include <ncurses.h>
 
 /* Main controller class */
 class SnakeGame{
@@ -15,4 +18,5 @@ private:
     Board _board;
     bool _game_over;
     Apple *_apple;
+    Snake snake;
 };

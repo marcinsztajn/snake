@@ -14,6 +14,7 @@ Board::Board(int height, int width){
     this->_height = height;
     this->_width = width;
     _board = newwin(height,width,this->_center_y - this->_height/2, this->_center_x - this->_width/2);
+    wtimeout(this->_board, 100);   //refreshing the screen
 }
 
 /* Method draws the border around the _board*/
@@ -53,10 +54,11 @@ void Board::add(Drawable drawable){
     this->addPoint(drawable.getY(), drawable.getX(), drawable.getIcon());
 }
 
-/* Get empty coordinates where to place the Apple*/
+/* Get empty coordinates where to place an Apple*/
 void Board::getEmptyCoordinates(int &y, int &x){
     /* One-liner which runs until it finds the empty spot on the board */
     while(mvwinch(this->_board, y = (rand() % this->_height), x = (rand() % this->_width)) != ' ');
+    
     // std::string text = "Y: " + std::to_string(y) + "  X: " + std::to_string(x); 
     // mvwaddstr(stdscr,this->_center_y + this->_height/2, this->_center_x - this->_width/2, text.c_str());
     // std::string str = "height: " + std::to_string(this->_height) + "  Width:" + std::to_string(this->_width);

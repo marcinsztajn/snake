@@ -12,12 +12,17 @@ using namespace std;
 
 // https://invisible-island.net/ncurses/man/ncurses.3x.html
 
+/*TODO :
+- add const to all getters methods like: type GetValue() const{ <body>}  -getters can be const as they don't change the object's state
+*/
+
 
 int main (int argc, char ** argv){
     initscr();
     refresh();
     cbreak(); // works by deafult
     noecho(); // we want it
+    curs_set(0); // hide the cursor
 
     // let get the dimension of the current window
     int max_y,max_x;

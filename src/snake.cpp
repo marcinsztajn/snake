@@ -37,10 +37,41 @@ void Snake::removePiece(){
 
 /* Return the arsh of the snake's body */
 SnakePiece Snake::tail(){
-    return this->_snake.back();
+    return this->_snake.front();
 }
 
 /* Return the head of the snake */
 SnakePiece Snake::head(){
-    return this->_snake.front();
+    return this->_snake.back();
+}
+
+/* Get the snake's direction */
+Direction Snake::getDirection() const{
+    return this->_snake_direction;
+}
+
+/* Set snake's direction */
+void Snake::setDirection(Direction direction){
+    this->_snake_direction = direction;
+}
+
+/* Returns the next position of the Snake's head */
+SnakePiece Snake::nextHead(){
+    int row = this->head().getY();
+    int col = this->head().getX();
+    switch(this->_snake_direction){
+        case down:
+            if (this->_snake_direction == Direction::down){ row ++; }
+        break;
+        case up:
+            if (this->_snake_direction == Direction::up){ row--; }
+        break;
+        case right:
+            if (this->_snake_direction == Direction::right){ col++; }
+        break;
+        case left:
+            if (this->_snake_direction == Direction::left){ col--; }
+        break;
+    }
+    return SnakePiece(row, col);
 }

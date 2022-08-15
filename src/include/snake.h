@@ -26,6 +26,9 @@ public:
     void removePiece();
     SnakePiece tail();
     SnakePiece head();
+    Direction getDirection() const;
+    void setDirection(Direction direction);
+    SnakePiece nextHead();
 private:
     std::queue<SnakePiece> _snake;
     Direction _snake_direction;

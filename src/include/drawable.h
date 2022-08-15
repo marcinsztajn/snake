@@ -5,10 +5,11 @@
 class Drawable{
 public:
     Drawable();
-    Drawable(int y, int x, chtype ch);
-    int getX();
-    int getY();
-    chtype getIcon();
+    Drawable(const int y, const int x, const chtype ch);
+    int getX() const;
+    int getY() const;
+    chtype getIcon() const;
+    void setPosition(int y, int x);
 
 protected:
     int _y, _x;
