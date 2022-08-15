@@ -9,7 +9,7 @@ SnakeGame::SnakeGame(int height, int width){
     this->_game_over = false;
     this->_apple = NULL;
     srand(time(NULL)); // seeds random number generator
-    this->initSnake(5,5);
+    this->initSnake(1,1);
 
 }
 
@@ -39,42 +39,17 @@ void SnakeGame::processInput(){
         case 'p':
             this->_board.setTimeout(-1); // wait forever until the user press the 'p' key
             while(this->_board.getInput() != 'p'); 
-            this->_board.setTimeout(100); // come back to the old timeout settings
+            this->_board.setTimeout(500); // come back to the old timeout settings
         break ;
     }
 }
 
 /* Update the state of the game */
 void SnakeGame::updateState()
-{
-    if (this->_apple == NULL){
-        int y, x;
-        this->_board.getEmptyCoordinates(y, x);
-        _apple = new Apple(y, x, 'A');
-        this->_board.add(*_apple);
-    }
-    SnakePiece next = snake.nextHead();
-    
-    
-    
-    
-    if((next.getX() != _apple->getX()) || (next.getY() != _apple->getY())){ /* if its blank spot*/
-        int emptyRow = snake.tail().getY();
-        int emptyCol = snake.tail().getX();
-        // put the empty spot where the tail was
-        this->_board.add(Empty(emptyRow, emptyCol));
-        snake.removePiece(); // drop the tail of the snake
-    }
-    else {
-        /* Delete an apple */    
-        delete this->_apple;
-        this->_apple = NULL;    
-        // Add score
-        score++;
-        _board.setScore(score);
-    }
-    this->_board.add(next);
-    snake.addPiece(next);
+{    
+    // SnakePiece next = snake.nextHead();
+    handleNextPiece(snake.nextHead());
+    if (this->_apple == NULL) { createApple();}
 }
 
 /* Redraw the board surface/canvas*/
@@ -88,47 +63,71 @@ bool SnakeGame::isOver()
 {
     return this->_game_over;
 }
-
+ 
 /* Initialize snake object */
 void SnakeGame::initSnake(int y, int x){
     // initaialize snake
     snake.setDirection(Direction::down);
-    std::string text;  
     
     /* Create the first piece */
-    SnakePiece next = SnakePiece(y,x);  // starting point
-    // text = "First piece: Y: " + std::to_string(next.getY()) + "  X: " + std::to_string(next.getX());
-    // mvwaddstr(stdscr,0, 0, text.c_str());
-    // wrefresh(stdscr);
-    _board.add(next);
-    snake.addPiece(next);
-
-    /* Create the second piece of snake */
-    next = snake.nextHead();
-    _board.add(next);
-    snake.addPiece(next);
+    // SnakePiece next = SnakePiece(y,x);  // starting point
+    handleNextPiece(SnakePiece(y,x));
+    handleNextPiece(snake.nextHead());
+    handleNextPiece(snake.nextHead());
+    handleNextPiece(snake.nextHead());
+    snake.setDirection(Direction::right);
+    handleNextPiece(snake.nextHead());
 
     // text = "Second piece: Y: " + std::to_string(next.getY()) + "  X: " + std::to_string(next.getX());
     // mvwaddstr(stdscr,1, 0, text.c_str());
     // wrefresh(stdscr);
     
-    /* Create the third piece of snake */
-    next = snake.nextHead();
-    _board.add(next);
-    snake.addPiece(next);
-
-    /* Create the fourth piece of snake */
-    next = snake.nextHead();
-    _board.add(next);
-    snake.addPiece(next);
-
-    /* Change snake direction to the right */
-    snake.setDirection(Direction::right);
-
-    /* Create the fifth piece of snake */
-    next = snake.nextHead();
-    _board.add(next);
-    snake.addPiece(next);
     this->_board.refresh();
+
+    createApple();
+
+}
+/* Function create an apple */
+void SnakeGame::createApple(){
+    /* Add the apple here */
+    int ay, ax;
+    this->_board.getEmptyCoordinates(ay, ax);
+    if(this->_apple != NULL){
+        throw std::runtime_error("Free apple's memory before creating new one!");
+    }
+    this->_apple = new Apple(ay, ax, 'A');
+    this->_board.add(*this->_apple);
+    this->_board.refresh();  
+}
+
+/* Function destroys an apple */
+void SnakeGame::destroyApple(){
+    if (this->_apple != NULL){
+        delete this->_apple;
+        this->_apple = NULL;
+    }
+}
+
+/* Handle moving the snake aka adding new pieces to his body */
+void SnakeGame::handleNextPiece(SnakePiece next){
+    if (this->_apple != NULL){
+        if((next.getX() != _apple->getX()) || (next.getY() != _apple->getY())){ /* if its blank spot*/
+            int emptyRow = snake.tail().getY();
+            int emptyCol = snake.tail().getX();
+            // put the empty spot where the tail was
+            this->_board.add(Empty(emptyRow, emptyCol));
+            snake.removePiece(); // drop the tail of the snake
+        }
+        else {
+            /* Delete an apple */    
+            destroyApple();
+            // Add score
+            score++;
+            _board.setScore(score);
+        }
+    }
+    this->_board.add(next);
+    snake.addPiece(next);
+    _board.refresh();
 
 }

@@ -4,6 +4,7 @@
 #include "snake.h"
 #include "empty.h"
 #include <ncurses.h>
+#include <stdexcept>
 
 /* Main controller class */
 class SnakeGame{
@@ -16,6 +17,9 @@ public:
     bool isOver();
 private:
     void initSnake(int y, int x);
+    void createApple();
+    void destroyApple();
+    void handleNextPiece(SnakePiece next);
     Board _board;
     bool _game_over;
     Apple *_apple;

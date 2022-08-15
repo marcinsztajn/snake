@@ -33,6 +33,7 @@ void Snake::addPiece(SnakePiece piece){
 /* Remove the piece of the snake's butt hehe */
 void Snake::removePiece(){
     this->_snake.pop();
+    /* https://stackoverflow.com/questions/71032192/does-pop-method-delete-the-object-from-the-memory */
 }
 
 /* Return the arsh of the snake's body */

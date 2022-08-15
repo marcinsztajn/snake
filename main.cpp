@@ -15,6 +15,7 @@ using namespace std;
 /*TODO :
 - add const to all getters methods like: type GetValue() const{ <body>}  -getters can be const as they don't change the object's state
 - update the CMakeLists.txt to be more comprehensive
+- define timeout in the main file (timeout in the board and snakegame class)
 */
 
 
