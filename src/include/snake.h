@@ -30,9 +30,11 @@ public:
     void setDirection(Direction direction);
     SnakePiece nextHead();
     void setWindowSize(int width, int height);
+    void setDefaultSnakeChar(chtype ch);
 private:
     std::queue<SnakePiece> _snake;
     Direction _snake_direction;
     int win_width, win_height;
+    chtype _snake_ch;
 };
 

@@ -16,6 +16,10 @@ public:
     void redraw();
     bool isOver();
     int getScore();
+    void setSnakeChar(chtype ch);
+    void setAppleChar(chtype ch);
+    chtype getSnakeChar();
+    chtype getAppleChar();
 private:
     void initSnake(int y, int x);
     void createApple();
@@ -26,4 +30,6 @@ private:
     Apple *_apple;
     Snake snake;
     int score = 0;
+    chtype _snake_sym = '#';
+    chtype _apple_sym = 'A';
 };

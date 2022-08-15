@@ -90,3 +90,8 @@ void Snake::setWindowSize(int width, int height){
     this->win_width = width;
     this->win_height = height;
 }
+
+/* Set default snake apperance */
+void Snake::setDefaultSnakeChar(chtype ch){
+    this->_snake_ch = ch;
+}

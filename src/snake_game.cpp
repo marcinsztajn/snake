@@ -137,30 +137,23 @@ void SnakeGame::handleNextPiece(SnakePiece next){
         }
     }
     
-    
-    
-    // if (this->_apple != NULL){
-    //     if((next.getX() != _apple->getX()) || (next.getY() != _apple->getY())){ /* if its blank spot*/
-    //         int emptyRow = snake.tail().getY();
-    //         int emptyCol = snake.tail().getX();
-    //         // put the empty spot where the tail was
-    //         this->_board.add(Empty(emptyRow, emptyCol));
-    //         snake.removePiece(); // drop the tail of the snake
-    //     }
-    //     else {
-    //         /* Delete an apple */    
-    //         destroyApple();
-    //         // Add score
-    //         score++;
-    //         _board.setScore(score);
-    //     }
-    // }
     this->_board.add(next);
     snake.addPiece(next);
     _board.refresh();
 
 }
 
+/* Get the game score */
 int SnakeGame::getScore(){
     return this->score;
+}
+
+/* Set the snake piece symbol */
+void SnakeGame::setSnakeChar(chtype ch){
+    this->_snake_sym = ch;
+}
+
+/* Set the apple symbol */
+void SnakeGame::setAppleChar(chtype ch){
+    this->_apple_sym = ch;
 }

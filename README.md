@@ -23,3 +23,10 @@ Run the game with the following command:
 
 This code might run correctly but is not optimized whatsoever. The project was written for fun purposes.
 
+# How the game looks like 
+
+![alt text](https://ibb.co/Fgm61FR)
+
+
+
+

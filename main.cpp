@@ -18,6 +18,8 @@ using namespace std;
 - define timeout in the main file (timeout in the board and snakegame class)
 */
 
+chtype apple_ch = 'O';
+chtype snake_ch = '#'; 
 
 int main (int argc, char ** argv){
     initscr();
