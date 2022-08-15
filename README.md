@@ -25,7 +25,8 @@ This code might run correctly but is not optimized whatsoever. The project was w
 
 # How the game looks like 
 
-![Snake Game](https://ibb.co/Fgm61FR)
+![Snake Game](https://i.ibb.co/KFb6gJT/snake.png)
+
 
 
 
