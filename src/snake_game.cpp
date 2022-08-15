@@ -86,6 +86,8 @@ void SnakeGame::initSnake(int y, int x){
 
     createApple();
 
+    snake.setWindowSize(this->_board.getWidth(), this->_board.getHeight());
+
 }
 /* Function create an apple */
 void SnakeGame::createApple(){
@@ -111,23 +113,54 @@ void SnakeGame::destroyApple(){
 /* Handle moving the snake aka adding new pieces to his body */
 void SnakeGame::handleNextPiece(SnakePiece next){
     if (this->_apple != NULL){
-        if((next.getX() != _apple->getX()) || (next.getY() != _apple->getY())){ /* if its blank spot*/
+        /* Chech next head position */
+        switch(this->_board.getCharAt(next.getY(), next.getX())){
+            case 'A':
+            /* If there is an apple */
+            destroyApple();
+            score++;
+            _board.setScore(score);
+            break;
+            case ' ':
+            {
+            /* if there is a free spot */
             int emptyRow = snake.tail().getY();
             int emptyCol = snake.tail().getX();
             // put the empty spot where the tail was
             this->_board.add(Empty(emptyRow, emptyCol));
             snake.removePiece(); // drop the tail of the snake
-        }
-        else {
-            /* Delete an apple */    
-            destroyApple();
-            // Add score
-            score++;
-            _board.setScore(score);
+            break;
+            }
+            case '#':
+            /* Colission with its body */
+            _game_over = true;
         }
     }
+    
+    
+    
+    // if (this->_apple != NULL){
+    //     if((next.getX() != _apple->getX()) || (next.getY() != _apple->getY())){ /* if its blank spot*/
+    //         int emptyRow = snake.tail().getY();
+    //         int emptyCol = snake.tail().getX();
+    //         // put the empty spot where the tail was
+    //         this->_board.add(Empty(emptyRow, emptyCol));
+    //         snake.removePiece(); // drop the tail of the snake
+    //     }
+    //     else {
+    //         /* Delete an apple */    
+    //         destroyApple();
+    //         // Add score
+    //         score++;
+    //         _board.setScore(score);
+    //     }
+    // }
     this->_board.add(next);
     snake.addPiece(next);
     _board.refresh();
 
+}
+
+int SnakeGame::getScore(){
+    return this->score;
 }

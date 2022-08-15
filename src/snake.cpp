@@ -65,17 +65,28 @@ SnakePiece Snake::nextHead(){
     int col = this->head().getX();
     switch(this->_snake_direction){
         case down:
-            if (this->_snake_direction == Direction::down){ row ++; }
+            row ++;
+            if (row == (win_height - 1)){row = 1;}
         break;
         case up:
-            if (this->_snake_direction == Direction::up){ row--; }
+            row--;
+            if (row == 0){row = win_height - 2 ;}
         break;
         case right:
-            if (this->_snake_direction == Direction::right){ col++; }
+            col++;
+            if (col == (win_width - 1)) {col = 1;}
         break;
         case left:
-            if (this->_snake_direction == Direction::left){ col--; }
+            col--;
+            if (col < 1) {col = win_width - 2;}
         break;
     }
+    // TODO: modulo to overlap the board
     return SnakePiece(row, col);
+}
+
+/* Inform snake about the boarders of the window it moves in */
+void Snake::setWindowSize(int width, int height){
+    this->win_width = width;
+    this->win_height = height;
 }

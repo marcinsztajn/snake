@@ -15,6 +15,7 @@ public:
     void updateState();
     void redraw();
     bool isOver();
+    int getScore();
 private:
     void initSnake(int y, int x);
     void createApple();

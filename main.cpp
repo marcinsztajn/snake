@@ -60,8 +60,9 @@ int main (int argc, char ** argv){
     // 4: go ro 1, unless game over
 
 
-    getch();
     endwin();
+    cout<<"Game over! Your score was: " << game->getScore();
+    cout<< "" << endl;
     
 }
 

@@ -17,6 +17,9 @@ public:
     void getEmptyCoordinates(int &y, int &x);
     void setTimeout(int timeout);
     void setScore(int score);
+    chtype getCharAt(int y, int x);
+    int getWidth();
+    int getHeight();
 
 private:
     WINDOW *_board;

@@ -29,8 +29,10 @@ public:
     Direction getDirection() const;
     void setDirection(Direction direction);
     SnakePiece nextHead();
+    void setWindowSize(int width, int height);
 private:
     std::queue<SnakePiece> _snake;
     Direction _snake_direction;
+    int win_width, win_height;
 };
 

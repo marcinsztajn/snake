@@ -78,8 +78,24 @@ void Board::setTimeout(int timeout){
     wtimeout(this->_board, timeout);
 }
 
+/* Set the game score */
 void Board::setScore(int score){
     std::string txt = "Score: " + std::to_string(score);
     mvwaddstr(stdscr, _center_y + _height/2, _center_x - _width/2, txt.c_str());
     wrefresh(stdscr);
+}
+
+/* Get the character and given coordinates */
+chtype Board::getCharAt(int y, int x){
+    return mvwinch(this->_board, y, x);
+}
+
+/* Get board's width */
+int Board::getWidth(){
+    return this->_width;
+}
+
+/* Get board's height */
+int Board::getHeight(){
+    return this->_height;
 }
