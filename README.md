@@ -31,9 +31,9 @@ This code might run correctly but is not optimized whatsoever. The project was w
 
 <br><kbd> &uarr; </kbd> - turn up </br>
 <kbd> &darr; </kbd> - turn down </br>
-<kbd> &larr; </kbd> - turn left
-<kbd> &rarr; </kbd> - turn right 
-<kbd> p </kbd> - pause the game 
+<kbd> &larr; </kbd> - turn left </br>
+<kbd> &rarr; </kbd> - turn right </br>
+<kbd> p </kbd> - pause the game </br>
 
 
 
