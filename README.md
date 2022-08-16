@@ -29,8 +29,7 @@ This code might run correctly but is not optimized whatsoever. The project was w
 
 ## Game control
 
-<kbd> &uarr; </kbd> - turn up
-
+<br><kbd> &uarr; </kbd> - turn up </br>
 <kbd> &darr; </kbd> - turn down
 
 <kbd> &larr; </kbd> - turn left
