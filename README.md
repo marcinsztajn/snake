@@ -35,5 +35,6 @@ This code might run correctly but is not optimized whatsoever. The project was w
 <kbd> &rarr; </kbd> - turn right </br>
 <kbd> p </kbd> - pause the game </br>
 
+Pressing down the arrow button speeds up the snake movement
 
 
