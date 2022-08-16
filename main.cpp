@@ -45,4 +45,5 @@ int main(int argc, char **argv)
     endwin();
     cout << "Game over! Your score was: " << game->getScore();
     cout << "" << endl;
+    delete game;
 }
