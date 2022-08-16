@@ -31,7 +31,7 @@ This code might run correctly but is not optimized whatsoever. The project was w
 
 <kbd> &uarr; </kbd> - turn up
 
-<kbd> duarr; </kbd> - turn down
+<kbd> &darr; </kbd> - turn down
 
 <kbd> &larr; </kbd> - turn left
 
