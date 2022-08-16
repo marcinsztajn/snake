@@ -30,6 +30,7 @@ This code might run correctly but is not optimized whatsoever. The project was w
 ## Game control
 
 <br><kbd> &uarr; </kbd> - turn up </br>
+
 <br><kbd> &darr; </kbd> - turn down </br>
 <br><kbd> &larr; </kbd> - turn left </br>
 <br><kbd> &rarr; </kbd> - turn right </br>
