@@ -29,8 +29,11 @@ This code might run correctly but is not optimized whatsoever. The project was w
 
 ## Game control
 
-<kbd> &uarr; </kbd> - upper arrow
-
+<kbd> &uarr; </kbd> - turn up
+<kbd> duarr; </kbd> - turn down
+<kbd> &larr; </kbd> - turn left
+<kbd> &rarr; </kbd> - turn right
+<kbd> p; </kbd> - pause the game
 
 
 
