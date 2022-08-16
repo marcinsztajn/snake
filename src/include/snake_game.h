@@ -7,7 +7,8 @@
 #include <stdexcept>
 
 /* Main controller class */
-class SnakeGame{
+class SnakeGame
+{
 public:
     SnakeGame(int height, int width);
     ~SnakeGame();
@@ -20,6 +21,7 @@ public:
     void setAppleChar(chtype ch);
     chtype getSnakeChar();
     chtype getAppleChar();
+
 private:
     void initSnake(int y, int x);
     void createApple();

@@ -3,9 +3,12 @@
 #include <queue>
 #include "drawable.h"
 
-
-enum Direction{
-    up = -1, down = 1, left = -2, right = 2
+enum Direction
+{
+    up = -1,
+    down = 1,
+    left = -2,
+    right = 2
 };
 
 /* Snake piece class */
@@ -31,10 +34,10 @@ public:
     SnakePiece nextHead();
     void setWindowSize(int width, int height);
     void setDefaultSnakeChar(chtype ch);
+
 private:
     std::queue<SnakePiece> _snake;
     Direction _snake_direction;
     int win_width, win_height;
     chtype _snake_ch;
 };
-

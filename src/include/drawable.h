@@ -2,7 +2,8 @@
 #include <ncurses.h>
 
 /* Base class for Apple and Snake object */
-class Drawable{
+class Drawable
+{
 public:
     Drawable();
     Drawable(const int y, const int x, const chtype ch);

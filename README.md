@@ -27,6 +27,9 @@ This code might run correctly but is not optimized whatsoever. The project was w
 
 ![Snake Game](https://i.ibb.co/KFb6gJT/snake.png)
 
+## Game control
+
+<kbd> &uarr; </kbd> - upper arrow
 
 
 
